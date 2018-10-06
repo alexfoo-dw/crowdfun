@@ -6,18 +6,24 @@ email  VARCHAR(128),
 PRIMARY KEY (email)
 );
 
-CREATE TABLE project (
-title  VARCHAR(128),
-description  VARCHAR(256),
-project_id  VARCHAR(32),
-start_date  DATE,
-duration  INT,
-keywords  VARCHAR(256),
-amount_sought  INT,
-amount_collected  INT,
-PRIMARY KEY (project_id)	
+CREATE TABLE project(
+title             VARCHAR(128) NOT NULL,
+description       VARCHAR(256) NOT NULL,
+project_id        VARCHAR(32) PRIMARY KEY,
+start_date        DATETIME  NOT NULL,
+duration          INT  NOT NULL,
+keywords          VARCHAR(256) NOT NULL,
+amount_sought     INT  NOT NULL,
+amount_collected  INT  NOT NULL,
+percent_collected INT  NOT NULL,
+category          VARCHAR(32) NOT NULL,
+category_url      VARCHAR(56) NOT NULL,
+clickthrough_url  VARCHAR(128) NOT NULL,
+image_url         VARCHAR(128) NOT NULL,
+is_indemand       VARCHAR(5) NOT NULL,
+product_stage     VARCHAR(10),
+source_url        VARCHAR(128) NOT NULL
 );
-
 
 CREATE TABLE creates (
 date  DATE,
