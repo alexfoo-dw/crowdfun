@@ -1,11 +1,11 @@
 <!DOCTYPE html>  
 <head>
-  <title>UPDATE PostgreSQL data with PHP</title>
+  <title>Crowdfun Index Page</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <style>li {list-style: none;}</style>
 </head>
 <body>
-  <h2>Supply bookid and enter</h2>
+  <h2>Crowdfun</h2>
   <ul>
     <form name="display" action="index.php" method="POST" >
       <li>Book ID:</li>
