@@ -44,8 +44,8 @@ FOREIGN KEY (p_projectID) REFERENCES project (project_id)
 );
 
 CREATE TABLE funds (
-fund_date  DATETIME,
-amount  INT,
+fund_date  DATETIME NOT NULL,
+amount  INT NOT NULL,
 u_email  VARCHAR(64),
 p_projectID  VARCHAR(32),
 PRIMARY KEY (u_email, p_projectID),
