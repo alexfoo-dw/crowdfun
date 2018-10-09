@@ -122,7 +122,7 @@
         <li>start_date:</li>
       	<li><input type='text' name='startdate_updated' value='$row[start_date]' /></li>
         <li>duration:</li>
-      	<li><input type='text' name='title_updated' value='$row[duration]' /></li>
+      	<li><input type='text' name='duration_updated' value='$row[duration]' /></li>
         <li>keywords:</li>
       	<li><input type='text' name='keywords_updated' value='$row[keywords]' /></li>
         <li>amount_sought:</li>
@@ -175,5 +175,37 @@
           }
       }
       ?>
+
+      <h2>Delete Project</h2>
+      <ul>
+        <form name="display" action="admin_edit.php" method="POST" >
+          <li>Enter project_id:</li>
+          <li><input type="text" name="project_id" /></li>
+          <li><input type="submit" name="submit" /></li>
+        </form>
+      </ul>
+
+      <?php
+   // Connect to the database. Please change the password in the following line accordingly
+     $db     = pg_connect("host=localhost port=5432 dbname=crowdfun user=postgres password=password");
+     $result = pg_query($db, "SELECT project where project.project_id = '$_POST[project_id]'");		// Query template
+     $row    = pg_fetch_assoc($result);
+
+     if (isset($_POST['submit'])) {
+       $result = pg_query($db, "DELETE project where project.project_id = '$_POST[project_id]'");
+     }
+     if (!$result) {
+         echo "Delete failed!!";
+     } else {
+         echo "Delete successful!";
+         header('location: admin_edit.php');
+     }
+
+   ?>
+
+
+
+
+
 </body>
 </html>
