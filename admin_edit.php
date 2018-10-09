@@ -183,7 +183,7 @@
       <form name="display" action="admin_edit.php" method="POST" >
         <li>Enter project_id:</li>
         <li><input type="text" name="delete_project_id" /></li>
-        <li><input type="submit" name="submit" value="delete"/></li>
+        <li><input type="submit" name="delete" value="delete"/></li>
       </form>
     </ul>
     <?php
@@ -196,7 +196,7 @@
     $result = pg_query($db, $query);
     $row    = pg_fetch_assoc($result);
 
-    if (isset($_POST['submit'])) {
+    if (isset($_POST['delete'])) {
       if (pg_num_rows($result) == 0) {
 
         echo "No Such Project";
