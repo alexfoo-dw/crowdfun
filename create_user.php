@@ -45,7 +45,15 @@
 
       } else {
         // Email already exists in database
-        echo "<h3>The associated email already has an account.</h3>";
+        $result = pg_query($db, "UPDATE users SET first_name = '$_POST[first_name]',  
+    last_name = '$_POST[last_name]',password = '$_POST[password]',  
+    dob = '$_POST[dob]', since = '$_POST[since]', birth_country = '$_POST[birth_country]', phone = '$_POST[phone]' WHERE email = '$_POST[email]'");
+        if (!$result) {
+            echo "Update failed!!";
+        } else {
+            echo "Update successful!";
+        }
+        // echo "<h3>The associated email already has an account.</h3>";
       }
     }
     // if (isset($_POST['new'])) {	// Submit the update SQL command
