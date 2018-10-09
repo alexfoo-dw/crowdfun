@@ -1,3 +1,7 @@
+<?php
+// Start the session
+session_start();
+?>
 <!DOCTYPE html>  
 <head>
   <title>UPDATE PostgreSQL data with PHP</title>
@@ -6,6 +10,17 @@
 </head>
 <body>
   <h2>Create new project</h2>
+  <?php
+  if(!empty($_SESSION)){
+    echo "<h5>Welcome, ", $_SESSION['first_name'], "</h5>";
+    echo "<a href='log_out.php'>Logout</a>";
+  } else {
+    echo "<h5>You are not logged in.</h5>";
+    echo "<h5>Please log in to fund a project</h5>";
+    echo "<a href='/crowdfun/log_in.php'>Login<br></a>";
+    echo "<a href='create_user.php'>Sign Up</a>";
+  }
+  ?>
   <ul>
     <form name="display" action="create_project.php" method="POST" >
       <li>Title:</li>
@@ -40,7 +55,6 @@
     </form>
   </ul>
   <?php
-  session_start();
   	// Connect to the database. Please change the password in the following line accordingly
     $db     = pg_connect("host=localhost port=5432 dbname=crowdfun user=postgres password=password");	
     // $result = pg_query($db, "SELECT * FROM project where project.project_id = '$_POST[project_id]'");		// Query template
