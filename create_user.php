@@ -5,7 +5,8 @@
   <style>li {list-style: none;}</style>
 </head>
 <body>
-  <h2>Create new user account</h2>
+  <h2>Crowdfun</h2>
+  <h3>Create a new user account</h3>
   <ul>
     <form name="display" action="create_user.php" method="POST" >
       <li>First name:</li>
