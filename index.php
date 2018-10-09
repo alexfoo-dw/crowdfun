@@ -1,3 +1,7 @@
+<?php
+// Start the session
+session_start();
+?>
 <!DOCTYPE html>  
 <head>
   <title>Crowdfun Index Page</title>
@@ -6,6 +10,24 @@
 </head>
 <body>
   <h2>Crowdfun</h2>
+  <?php
+  if(!empty($_SESSION)){
+    echo "<h5>Welcome, ", $_SESSION['first_name'], "</h5>";
+    echo "<a href='log_out.php'>Logout</a>";
+  } else {
+    echo "<h5>You are not logged in.</h5>";
+    echo "<a href='/crowdfun/log_in.php'>Login<br></a>";
+    echo "<a href='create_user.php'>Sign Up</a>";
+  }
+  ?>
+
+  <!--nav-->
+  <ul>
+    <li><a href='index.php'>Home</a></li>
+    <li><a href='create_project.php'>Create a project</a></li>
+    <li><a href='fund.php'>Fund a project</a></li>
+  </ul>
+
   <ul>
     <form name="display" action="index.php" method="POST" >
       <li>Search project category:</li>
