@@ -40,19 +40,32 @@
     </form>
   </ul>
   <?php
+  session_start();
   	// Connect to the database. Please change the password in the following line accordingly
     $db     = pg_connect("host=localhost port=5432 dbname=crowdfun user=postgres password=password");	
-    $result = pg_query($db, "SELECT * FROM project where project.project_id = '$_POST[project_id]'");		// Query template
+    // $result = pg_query($db, "SELECT * FROM project where project.project_id = '$_POST[project_id]'");		// Query template
     // $row    = pg_fetch_adssoc($result);		// To store the result row
     if (isset($_POST['project'])) {
+       $result = pg_query($db, "SELECT * FROM project where project.project_id = '$_POST[project_id]'");    // Query template
       if (pg_num_rows($result) == 0) {
-        // Create account
+        // if project does not already exist
+        // Create project
         $result = pg_query($db, "INSERT INTO project VALUES ('$_POST[title]', '$_POST[description]', '$_POST[project_id]', '$_POST[start_date]', '$_POST[duration]', '$_POST[keywords]', '$_POST[amount_sought]', 0, 0, '$_POST[category]', '$_POST[category_url]', '$_POST[clickthrough_url]', '$_POST[image_url]', '$_POST[is_indemand]', '$_POST[product_stage]', '$_POST[source_url]');");
+
         if (!$result) {
             // echo "Account creation failed!!";
-          echo pg_last_error($db);
+          echo "Project creation failed" . pg_last_error($db);
         } else {
             echo "Project created!";
+        }
+
+        $result = pg_query($db, "INSERT INTO creates VALUES ('$_SESSION[email]', '$_POST[project_id]');");
+
+        if (!$result) {
+            // echo "Account creation failed!!";
+          echo "Failed to insert project into create table" . pg_last_error($db);
+        } else {
+            echo "Project inserted into create table";
         }
 
       } else {
