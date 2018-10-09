@@ -207,34 +207,11 @@
         $result = pg_query($db, $query);
 
         if (!$result) {
-            // echo "Account creation failed!!";
           echo pg_last_error($db);
         } else {
             echo "Delete successful";
         }
       }
-    
-   // Connect to the database. Please change the password in the following line accordingly
-    /* $db     = pg_connect("host=localhost port=5432 dbname=crowdfun user=postgres password=password");
-     $result1 = pg_query($db, "SELECT * FROM project where project.project_id = '$_POST[delete_project_id]'");		// Query template
-     $row    = pg_fetch_assoc($result1);
-
-     if (pg_num_rows($result1) == 0) {
-        echo "No such project";
-     }
-
-     if (isset($_POST['delete'])) {
-       $result1 = pg_query($db, "DELETE FROM project where project.project_id = '$_POST[delete_project_id]'");
-     
-        if (!$result1) {
-            echo "Delete failed!!";
-        } else {
-            echo "Delete successful!";
-            header('location: admin_edit.php');
-        }
-      }
-
-      */
    ?>
  </body>
  </html>
