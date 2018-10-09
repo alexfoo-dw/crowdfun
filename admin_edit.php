@@ -177,6 +177,41 @@
           }
       }
       ?>
+      <h2>Delete User</h2>
+      <ul>
+        <form name="display" action="admin_edit.php" method="POST" >
+          <li>Enter Email:</li>
+          <li><input type="text" name="delete_email" /></li>
+          <li><input type="submit" name="delete" value="delete"/></li>
+        </form>
+      </ul>
+      <?php
+
+      $db     = pg_connect("host=localhost port=5432 dbname=crowdfun user=postgres password=password");
+      $query = "SELECT * FROM funds where funds.u_email = '$_POST[delete_email]';";
+      $query .= "SELECT * FROM creates where creates.u_email = '$_POST[delete_email]';";
+      $query .= "SELECT * FROM users where users.email = '$_POST[delete_email]';";
+      //$result = pg_query($db, "SELECT * FROM project where project.project_id = '$_POST[delete_project_id]'");   // Query template
+      $result = pg_query($db, $query);
+      $row    = pg_fetch_assoc($result);
+
+      if (isset($_POST['delete'])) {
+        if (pg_num_rows($result) == 0) {
+
+          echo "No Such User";
+        }
+          $query = "DELETE FROM funds where funds.u_email = '$_POST[delete_email]';";
+          $query .= "DELETE FROM creates where creates.u_email = '$_POST[delete_email]';";
+          $query .= "DELETE FROM users where users.email = '$_POST[delete_email]';";
+          $result = pg_query($db, $query);
+
+          if (!$result) {
+            echo pg_last_error($db);
+          } else {
+              echo "Delete successful";
+          }
+        }
+     ?>
 
     <h2>Delete Project</h2>
     <ul>
