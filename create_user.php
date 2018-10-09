@@ -24,7 +24,7 @@
       <li><input type="text" name="birth_country" /></li>
       <li>Phone number:</li>
       <li><input type="text" name="phone" /></li>
-      <li><input type="submit" name="create" value = "Create" /></li>
+      <li><input type="submit" name="users" value = "Create" /></li>
     </form>
   </ul>
   <?php
@@ -32,7 +32,7 @@
     $db     = pg_connect("host=localhost port=5432 dbname=crowdfun user=postgres password=password");	
     $result = pg_query($db, "SELECT * FROM users where users.email = '$_POST[email]'");		// Query template
     $row    = pg_fetch_assoc($result);		// To store the result row
-    if (isset($_POST['create'])) {
+    if (isset($_POST['users'])) {
       if (pg_num_rows($result) == 0) {
         // Create account
         $result = pg_query($db, "INSERT INTO users VALUES ('$_POST[first_name]', '$_POST[last_name]', '$_POST[password]', '$_POST[email]', '$_POST[dob]', '$_POST[since]', '$_POST[birth_country]', '$_POST[phone]');");
