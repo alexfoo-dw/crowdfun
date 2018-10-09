@@ -98,7 +98,9 @@
             header('location: admin_edit.php');
         }
     }
+
     ?>
+
     <h2>Edit Project</h2>
     <ul>
       <form name="display" action="admin_edit.php" method="POST" >
@@ -176,36 +178,63 @@
       }
       ?>
 
-      <h2>Delete Project</h2>
-      <ul>
-        <form name="display" action="admin_edit.php" method="POST" >
-          <li>Enter project_id:</li>
-          <li><input type="text" name="project_id" /></li>
-          <li><input type="submit" name="submit" /></li>
-        </form>
-      </ul>
+    <h2>Delete Project</h2>
+    <ul>
+      <form name="display" action="admin_edit.php" method="POST" >
+        <li>Enter project_id:</li>
+        <li><input type="text" name="delete_project_id" /></li>
+        <li><input type="submit" name="submit" value="delete"/></li>
+      </form>
+    </ul>
+    <?php
 
-      <?php
+    $db     = pg_connect("host=localhost port=5432 dbname=crowdfun user=postgres password=password");
+    $query = "SELECT * FROM funds where funds.p_projectid = '$_POST[delete_project_id]';";
+    $query .= "SELECT * FROM creates where creates.p_projectid = '$_POST[delete_project_id]';";
+    $query .= "SELECT * FROM project where project.project_id = '$_POST[delete_project_id]';";
+    //$result = pg_query($db, "SELECT * FROM project where project.project_id = '$_POST[delete_project_id]'");   // Query template
+    $result = pg_query($db, $query);
+    $row    = pg_fetch_assoc($result);
+
+    if (isset($_POST['submit'])) {
+      if (pg_num_rows($result) == 0) {
+
+        echo "No Such Project";
+      }
+        $query = "DELETE FROM funds where funds.p_projectid = '$_POST[delete_project_id]';";
+        $query .= "DELETE FROM creates where creates.p_projectid = '$_POST[delete_project_id]';";
+        $query .= "DELETE FROM project where project.project_id = '$_POST[delete_project_id]';";
+        $result = pg_query($db, $query);
+
+        if (!$result) {
+            // echo "Account creation failed!!";
+          echo pg_last_error($db);
+        } else {
+            echo "Delete successful";
+        }
+      }
+    
    // Connect to the database. Please change the password in the following line accordingly
-     $db     = pg_connect("host=localhost port=5432 dbname=crowdfun user=postgres password=password");
-     $result = pg_query($db, "SELECT project where project.project_id = '$_POST[project_id]'");		// Query template
-     $row    = pg_fetch_assoc($result);
+    /* $db     = pg_connect("host=localhost port=5432 dbname=crowdfun user=postgres password=password");
+     $result1 = pg_query($db, "SELECT * FROM project where project.project_id = '$_POST[delete_project_id]'");		// Query template
+     $row    = pg_fetch_assoc($result1);
 
-     if (isset($_POST['submit'])) {
-       $result = pg_query($db, "DELETE project where project.project_id = '$_POST[project_id]'");
-     }
-     if (!$result) {
-         echo "Delete failed!!";
-     } else {
-         echo "Delete successful!";
-         header('location: admin_edit.php');
+     if (pg_num_rows($result1) == 0) {
+        echo "No such project";
      }
 
+     if (isset($_POST['delete'])) {
+       $result1 = pg_query($db, "DELETE FROM project where project.project_id = '$_POST[delete_project_id]'");
+     
+        if (!$result1) {
+            echo "Delete failed!!";
+        } else {
+            echo "Delete successful!";
+            header('location: admin_edit.php');
+        }
+      }
+
+      */
    ?>
-
-
-
-
-
-</body>
-</html>
+ </body>
+ </html>
