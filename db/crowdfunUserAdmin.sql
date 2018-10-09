@@ -1,5 +1,5 @@
-INSERT INTO admin VALUES ('Godmode','Special','admin');
-INSERT INTO admin VALUES ('Paul','Robins','admin');
+INSERT INTO admin VALUES ('Godmode','Special','admin', 'admin@admin.com');
+INSERT INTO admin VALUES ('Paul','Robins','admin', 'paul@admin.com');
 INSERT INTO users(first_name,last_name,password,email,dob,since,birth_country,phone) VALUES ('Jayson','Helga','AdD4vs','hllam@yahoo.ca','1962-02-19','2013-11-02','France','61494883');
 INSERT INTO users(first_name,last_name,password,email,dob,since,birth_country,phone) VALUES ('Dalene','Adrien','yUqYG7','conteb@att.net','1964-12-24','2013-12-26','United States','63678820');
 INSERT INTO users(first_name,last_name,password,email,dob,since,birth_country,phone) VALUES ('Sheryll','Rolland','kkt83t','isotopian@yahoo.com','1967-03-28','2014-09-01','Spain','63605326');

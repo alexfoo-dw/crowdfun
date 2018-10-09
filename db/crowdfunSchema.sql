@@ -33,7 +33,7 @@ clickthrough_url  VARCHAR(128) NOT NULL,
 image_url         VARCHAR(128) NOT NULL,
 is_indemand       VARCHAR(5) NOT NULL,
 product_stage     VARCHAR(10),
-source_url        VARCHAR(128) NOT NULL
+source_url        VARCHAR(128)
 );
 
 CREATE TABLE creates (
