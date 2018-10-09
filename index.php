@@ -33,6 +33,7 @@
       <th>duration</th>
       <th>keywords</th>
       <th>amount_sought</th>
+      <th>amount_collected</th>
       <th>percent_collected</th>
       <th>category</th>
       <th>category_url</th>
@@ -52,6 +53,7 @@
         <td>$row[duration]</td>
         <td>$row[keywords]</td>
         <td>$row[amount_sought]</td>
+        <td>$row[amount_collected]</td>
         <td>$row[percent_collected]</td>
         <td>$row[category]</td>
         <td>$row[category_url]</td>
