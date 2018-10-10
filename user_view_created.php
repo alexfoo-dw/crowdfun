@@ -16,7 +16,6 @@ session_start();
     echo "<a href='log_out.php'>Logout</a>";
   } else {
   	echo "<h5>You are not logged in.</h5>";
-  	echo "<h5>Please log in to fund a project</h5>";
     echo "<a href='/crowdfun/log_in.php'>Login<br></a>";
     echo "<a href='create_user.php'>Sign Up</a>";
   }
@@ -43,7 +42,7 @@ session_start();
           </ul>";
   }
   ?>
-  
+
   <?php
   
  	// Connect to the database. Please change the password in the following line accordingly	

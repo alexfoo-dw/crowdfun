@@ -16,7 +16,6 @@ session_start();
     echo "<a href='log_out.php'>Logout</a>";
   } else {
     echo "<h5>You are not logged in.</h5>";
-    echo "<h5>Please log in to fund a project</h5>";
     echo "<a href='/crowdfun/log_in.php'>Login<br></a>";
     echo "<a href='create_user.php'>Sign Up</a>";
   }
@@ -43,7 +42,7 @@ session_start();
           </ul>";
   }
   ?>
-  
+
   <?php
   
   // Connect to the database. Please change the password in the following line accordingly  
@@ -54,7 +53,7 @@ session_start();
     //$stats = pg_query($db, "SELECT COUNT(*) FROM project p WHERE percent_collected >=100;");
     //$stats_row = pg_fetch_assoc($stats);
     //$sum = $stats_row[sum];
-    $html = "<h2>Projects you have created:</h2>
+    $html = "<h2>Successful Projects:</h2>
     <h4>Number of successful projects: $num_rows </h4>
       <table>
       <tr>
