@@ -46,40 +46,54 @@ session_start();
 
   <ul>
     <form name="display" action="index.php" method="POST" >
-      <li>Search project category:</li>
-      <li><input type="text" name="bookid" /></li>
-      <li><input type="submit" name="project" value = "Search"/></li>
+      <li>Select project category:</li>
+      <li><input type="radio" name="category" value="All">All</li>
+      <li><input type="radio" name="category" value="Art">Art</li>
+      <li><input type="radio" name="category" value="Audio">Audio</li>
+      <li><input type="radio" name="category" value="Camera Gear">Camera Gear</li>
+      <li><input type="radio" name="category" value="Comics">Comics</li>
+      <li><input type="radio" name="category" value="Energy & Green Tech">Energy & Green Tech</li>
+      <li><input type="radio" name="category" value="Fashion & Wearables">Fashion & Wearables</li>
+      <li><input type="radio" name="category" value="Film">Film</li>
+      <li><input type="radio" name="category" value="Food & Beverages">Food & Beverages</li>
+      <li><input type="radio" name="category" value="Health & Fitness">Health & Fitness</li>
+      <li><input type="radio" name="category" value="Home">Home</li>
+      <li><input type="radio" name="category" value="Phones & Accessories">Phones & Accessories</li>
+      <li><input type="radio" name="category" value="Productivity">Productivity</li>
+      <li><input type="radio" name="category" value="Tabletop Games">Tabletop Games</li>
+      <li><input type="radio" name="category" value="Transportation">Transportation</li>
+      <li><input type="radio" name="category" value="Travel & Outdoors">Travel & Outdoors</li>
+      <li><input type="radio" name="category" value="Video Games">Video Games</li>
+      <li><input type="submit" name="project" value="Search"/></li>
     </form>
   </ul>
   <?php
   	// Connect to the database. Please change the password in the following line accordingly
-    $db     = pg_connect("host=localhost port=5432 dbname=crowdfun user=postgres password=password");	
+    $db     = pg_connect("host=localhost port=5432 dbname=crowdfun user=postgres password=password");
     // $result = pg_query($db, "SELECT * FROM book where book_id = '$_POST[bookid]'");		// Query template
-    $result = pg_query($db, "SELECT * FROM project WHERE category = '$_POST[bookid]';");
+    if($_POST[category] == "All"){
+        $result = pg_query($db, "SELECT * FROM project");  
+    } else {
+        $result = pg_query($db, "SELECT * FROM project WHERE category = '$_POST[category]';");
+    }
+    $num_rows = pg_num_rows($result);
     // $row    = pg_fetch_assoc($result);		// To store the result row
 
     // echo "$row['first_name']";
 
     if (isset($_POST['project'])) {
-      $html = "<h1>Project table</h1><br>
+      $html = "<h1>Project table</h1>
+      <h4>Number of projects: $num_rows</h4>
       <table>
       <tr>
       <th>title</th>
       <th>description</th>
       <th>project_id</th>
       <th>start_date</th>
-      <th>duration</th>
-      <th>keywords</th>
       <th>amount_sought</th>
       <th>amount_collected</th>
       <th>percent_collected</th>
       <th>category</th>
-      <th>category_url</th>
-      <th>clickthrough_url</th>
-      <th>image_url</th>
-      <th>is_indemand</th>
-      <th>product_stage</th>
-      <th>source_url</th>
       </tr>";
 
       while ($row = pg_fetch_assoc($result)) {
@@ -88,18 +102,10 @@ session_start();
         <td>$row[description]</td>
         <td>$row[project_id]</td>
         <td>$row[start_date]</td>
-        <td>$row[duration]</td>
-        <td>$row[keywords]</td>
-        <td>$row[amount_sought]</td>
-        <td>$row[amount_collected]</td>
-        <td>$row[percent_collected]</td>
+        <td>$ $row[amount_sought]</td>
+        <td>$ $row[amount_collected]</td>
+        <td>$row[percent_collected] %</td>
         <td>$row[category]</td>
-        <td>$row[category_url]</td>
-        <td>$row[clickthrough_url]</td>
-        <td>$row[image_url]</td>
-        <td>$row[is_indemand]</td>
-        <td>$row[product_stage]</td>
-        <td>$row[source_url]</td>
         </tr>";
         
       }
@@ -167,17 +173,12 @@ session_start();
 
     if (isset($_POST['users'])) {
       $html = "";
-      $html .= "<h1>Users table</h1><br>
+      $html .= "
       <table>
       <tr>
       <th>first_name</th>
       <th>last_name</th>
-      <th>password</th>
       <th>email</th>
-      <th>dob</th>
-      <th>since</th>
-      <th>birth_country</th>
-      <th>phone</th>
       </tr>";
 
       // $result = pg_query($db, "SELECT * FROM users;");
@@ -186,12 +187,7 @@ session_start();
         $html .= "<tr>
         <td>$row[first_name]</td>
         <td>$row[last_name]</td>
-        <td>$row[password]</td>
         <td>$row[email]</td>
-        <td>$row[dob]</td>
-        <td>$row[since]</td>
-        <td>$row[birth_country]</td>
-        <td>$row[phone]</td>
         </tr>";
         
       }
