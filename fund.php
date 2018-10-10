@@ -22,11 +22,27 @@ session_start();
   }
   ?>
   <!--nav-->
-  <ul>
-    <li><a href='index.php'>Home</a></li>
-    <li><a href='create_project.php'>Create a project</a></li>
-    <li><a href='fund.php'>Fund a project</a></li>
-  </ul>
+  <?php
+  if(empty($_SESSION)){
+    echo "
+          <ul>
+            <li><a href='index.php'>Home</a></li>
+            <li><a href='success_projects.php'>Successful Projects</a></li>
+            <li><a href='create_project.php'>Create a project</a></li>
+            <li><a href='fund.php'>Fund a project</a></li>
+          </ul>";
+  } else {
+    echo "
+          <ul>
+            <li><a href='index.php'>Home</a></li>
+            <li><a href='success_projects.php'>Successful Projects</a></li>
+            <li><a href='create_project.php'>Create a project</a></li>
+            <li><a href='fund.php'>Fund a project</a></li>
+            <li><a href='user_view_funded.php'>View your contributed projects</a></li>
+            <li><a href='user_view_created.php'>View your created projects</a></li>
+          </ul>";
+  }
+  ?>
 
   <ul>
     <form name="display" action="fund.php" method="POST" >
@@ -70,7 +86,7 @@ session_start();
   			$new_percent = $new_amount / $curr_project[amount_sought] * 100;
   			$result = pg_query($db, "UPDATE project SET amount_collected = $new_amount, percent_collected = $new_percent WHERE project_id = '$curr_project[project_id]'");
   			if(!$result){
-  				echo "Funding Failed!";
+  				echo "Funding Failed!" . pg_last_error($db);
   			} else {
   				echo "<h4>Success!</h4>";
 	  			echo "<ul>  
@@ -79,7 +95,17 @@ session_start();
 		    	<li>New Amount Collected: $new_amount</li>  
 		    	<li>New Percentage Funded: $new_percent</li> 
 		    	</ul>";
+          // store into funds table
+          $date = date('Y-m-d');
+          $email = $_SESSION['email'];
+          $result = pg_query($db, "INSERT INTO funds(fund_date,amount,u_email,p_projectID) VALUES ( '$date', $_POST[fund_amount], '$email', '$curr_project[project_id]')");
+          if (!$result) {
+              echo "Failed to insert into funds table" . pg_last_error($db);
+          } else {
+              echo "Project inserted into fund table";
+          }
 		    }
+
   		}  	
   	}
   ?>

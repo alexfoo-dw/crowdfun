@@ -21,6 +21,30 @@ session_start();
     echo "<a href='create_user.php'>Sign Up</a>";
   }
   ?>
+  
+    <!--nav-->
+  <?php
+  if(empty($_SESSION)){
+    echo "
+          <ul>
+            <li><a href='index.php'>Home</a></li>
+            <li><a href='success_projects.php'>Successful Projects</a></li>
+            <li><a href='create_project.php'>Create a project</a></li>
+            <li><a href='fund.php'>Fund a project</a></li>
+          </ul>";
+  } else {
+    echo "
+          <ul>
+            <li><a href='index.php'>Home</a></li>
+            <li><a href='success_projects.php'>Successful Projects</a></li>
+            <li><a href='create_project.php'>Create a project</a></li>
+            <li><a href='fund.php'>Fund a project</a></li>
+            <li><a href='user_view_funded.php'>View your contributed projects</a></li>
+            <li><a href='user_view_created.php'>View your created projects</a></li>
+          </ul>";
+  }
+  ?>
+
   <ul>
     <form name="display" action="create_project.php" method="POST" >
       <li>Title:</li>
