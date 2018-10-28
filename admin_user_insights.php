@@ -12,6 +12,8 @@
       <!-- list metrics here -->
       <!-- list users who funded all projects -->
       <li><input type="submit" name="insight" value = "user_fund_all"/></li>
+      <li><input type="submit" name="insight" value = "user_not_funded_any"/></li>
+      <li><input type="submit" name="insight" value = "user_not_created_any"/></li>
       <li><input type="submit" name="insight" value = "user_all"/></li>
     </form>
   </ul>
@@ -25,6 +27,12 @@
     switch ($insight_type) {
       case "user_fund_all":
         $metrics = pg_query($db, "SELECT * FROM users u WHERE NOT EXISTS (SELECT * FROM project p WHERE NOT EXISTS (SELECT * FROM funds f WHERE u.email = f.u_email AND p.project_id = f.p_projectid ));");    
+        break;
+      case "user_not_funded_any":
+        $metrics = pg_query($db, "SELECT * FROM users u WHERE NOT EXISTS (SELECT * FROM funds f INNER JOIN project p ON u.email = f.u_email AND p.project_id = f.p_projectid );");    
+        break;
+      case "user_not_created_any":
+        $metrics = pg_query($db, "SELECT * FROM users u WHERE NOT EXISTS (SELECT * FROM creates c INNER JOIN project p ON u.email = c.u_email AND p.project_id = c.p_projectid );");    
         break;
       case "user_all":
         $metrics = pg_query($db, "SELECT * FROM users;");
