@@ -15,6 +15,25 @@
       <li><input type="submit" name="insight" value = "user_not_funded_any"/></li>
       <li><input type="submit" name="insight" value = "user_not_created_any"/></li>
       <li><input type="submit" name="insight" value = "user_all"/></li>
+      <select name = "category">
+        <option value="Art">Art</option>
+        <option value="Audio">Audio</option>
+        <option value="Camera Gear">Camera Gear</option>
+        <option value="Comics">Comics</option>
+        <option value="Energy & Green Tech">Energy & Green Tech</option>
+        <option value="Fashion & Wearables">Fashion & Wearables</option>
+        <option value="Film">Film</option>
+        <option value="Food & Beverages">Food & Beverages</option>
+        <option value="Health & Fitness">Health & Fitness</option>
+        <option value="Home">Home</option>
+        <option value="Phones & Accessories">Phones & Accessories</option>
+        <option value="Productivity">Productivity</option>
+        <option value="Tabletop Games">Tabletop Games</option>
+        <option value="Transportation">Transportation</option>
+        <option value="Travel & Outdoors">Travel & Outdoors</option>
+        <option value="Video Games">Video Games</option>
+      </select>
+      <input type="submit" name="insight" value = "user_fund_category"/>
     </form>
   </ul>
 
@@ -37,6 +56,9 @@
       case "user_all":
         $metrics = pg_query($db, "SELECT * FROM users;");
         break;
+      case "user_fund_category":
+        $metrics = pg_query($db, "SELECT * FROM users u WHERE EXISTS (SELECT * FROM funds f INNER JOIN project p ON p.category = '$_POST[category]' AND p.project_id = f.p_projectid AND u.email = f.u_email );");    
+        break;
     }
     
     if (isset($_POST['insight'])) {
@@ -53,8 +75,6 @@
       <th>birth_country</th>
       <th>phone</th>
       </tr>";
-
-      // $result = pg_query($db, "SELECT * FROM users;");
 
       while ($row = pg_fetch_assoc($metrics)) {
         $html .= "<tr>
