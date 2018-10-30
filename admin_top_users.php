@@ -15,7 +15,7 @@
 
   <?php
     $db     = pg_connect("host=localhost port=5432 dbname=crowdfun user=postgres password=password");
-    $result = pg_query($db, "SELECT u1.first_name, u1.last_name, f1.amount, u1.email
+    $result = pg_query($db, "SELECT u1.first_name, u1.last_name, f1.amount, u1.email, u1.birth_country
     						 FROM funds f1 INNER JOIN users u1 ON f1.u_email = u1.email WHERE f1.amount = (select max(f1_max.amount) 
     						 					from funds f1_max 
     						 					where f1.u_email = f1_max.u_email) 
@@ -30,6 +30,7 @@
       <th>last_name</th>
       <th>email</th>
       <th>amount contributed</th>
+      <th>birth country</th>
       </tr>";
 
       while ($row = pg_fetch_assoc($result)) {
@@ -37,7 +38,8 @@
         <td>$row[first_name]</td>
         <td>$row[last_name]</td>
         <td>$row[email]</td>
-		<td>$row[amount]</td>
+		    <td>$row[amount]</td>
+        <td>$row[birth_country]</td>
         </tr>";
       }
 
@@ -70,8 +72,8 @@
 	      <th>first_name</th>
 	      <th>last_name</th>
 	      <th>email</th>
-	      <th>birth_country</th>
 	      <th>amount contributed</th>
+        <th>birth_country</th>
 	      </tr>";
 
 	      while ($row = pg_fetch_assoc($temp)) {
@@ -79,8 +81,8 @@
 	        <td>$row[first_name]</td>
 	        <td>$row[last_name]</td>
 	        <td>$row[email]</td>
-	        <td>$row[birth_country]</td>
-			<td>$row[amount]</td>
+    			<td>$row[amount]</td>
+          <td>$row[birth_country]</td>
 	        </tr>";
 	      }
 
