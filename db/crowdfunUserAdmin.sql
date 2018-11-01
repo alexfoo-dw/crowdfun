@@ -23,7 +23,7 @@ INSERT INTO users(first_name,last_name,password,email,dob,since,birth_country,ph
 INSERT INTO users(first_name,last_name,password,email,dob,since,birth_country,phone) VALUES ('Shanna','Raymond','hwbKJx','tbeck@yahoo.ca','1987-05-15','2017-11-09','Mexico','63161276');
 INSERT INTO users(first_name,last_name,password,email,dob,since,birth_country,phone) VALUES ('Shauna','Inge','8LN9n7','kodeman@me.com','1992-09-10','2018-02-24','United States','79608491');
 INSERT INTO users(first_name,last_name,password,email,dob,since,birth_country,phone) VALUES ('Reginia','Santo','r9J6qn','dprice@msn.com','1993-08-29','2018-02-27','Spain','64426149');
-INSERT INTO users(first_name,last_name,password,email,dob,since,birth_country,phone) VALUES ('Rickey','Margorie','45390','library@yahoo.ca','1994-04-13','2018-04-19','China','67094871');
+INSERT INTO users(first_name,last_name,password,email,dob,since,birth_country,phone) VALUES ('Rickey','Margorie','453901','library@yahoo.ca','1994-04-13','2018-04-19','China','67094871');
 INSERT INTO users(first_name,last_name,password,email,dob,since,birth_country,phone) VALUES ('Cleta','Cammy','cQXyMS','vmalik@me.com','1994-07-15','2018-08-16','Italy','63978383');
 INSERT INTO users(first_name,last_name,password,email,dob,since,birth_country,phone) VALUES ('Madeleine','Arlyne','CFhXQj','dinther@mac.com','1962-02-18','2014-02-11','United Kingdom','67745329');
 INSERT INTO users(first_name,last_name,password,email,dob,since,birth_country,phone) VALUES ('Sondra','Kristeen','p6AAjJ','msherr@hotmail.com','1963-02-24','2014-02-22','Germany','69604325');
@@ -50,3 +50,5 @@ INSERT INTO users(first_name,last_name,password,email,dob,since,birth_country,ph
 INSERT INTO users(first_name,last_name,password,email,dob,since,birth_country,phone) VALUES ('Malia','Eleanore','FLQjkj','bolow@aol.com','1984-12-17','2018-03-05','United Kingdom','95377830');
 INSERT INTO users(first_name,last_name,password,email,dob,since,birth_country,phone) VALUES ('Armida','Ruthann','h2vxAj','fraterk@yahoo.ca','1987-07-29','2018-03-29','United States','99494702');
 INSERT INTO users(first_name,last_name,password,email,dob,since,birth_country,phone) VALUES ('Chae','Melany','eQpsvS','fangorn@att.net','1991-12-23','2018-04-09','Spain','99765013');
+INSERT INTO users(first_name,last_name,password,email,dob,since,birth_country,phone) VALUES ('Paul','Bradley','12Ckli','powerful@atc.com','1990-12-23','2017-04-09','Italy','81920394');
+INSERT INTO users(first_name,last_name,password,email,dob,since,birth_country,phone) VALUES ('Barack','Obama','1c3kYi','boss@bossmode.com','1989-11-23','2014-04-09','United States','88888888');
