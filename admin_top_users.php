@@ -17,11 +17,14 @@
 
   <?php
     $db     = pg_connect("host=localhost port=5432 dbname=crowdfun user=postgres password=password");
+    $result = pg_query($db, "SELECT u.first_name, u.last_name, f.u_email, SUM(f.amount), u.birth_country, u.since FROM funds f INNER JOIN users u ON f.u_email = u.email GROUP BY f.u_email, u.first_name, u.last_name, u.birth_country, u.since ORDER BY SUM(f.amount) DESC");
+    /*
     $result = pg_query($db, "SELECT u1.first_name, u1.last_name, f1.amount, u1.email, u1.birth_country
     						 FROM funds f1 INNER JOIN users u1 ON f1.u_email = u1.email WHERE f1.amount = (select max(f1_max.amount) 
     						 					from funds f1_max 
     						 					where f1.u_email = f1_max.u_email) 
     						 ORDER BY f1.amount DESC");   // Query template
+    */
 
     if (isset($_POST['users'])) {
       $html = "";	
@@ -32,16 +35,18 @@
       <th>last_name</th>
       <th>email</th>
       <th>amount contributed</th>
-      <th>birth country</th>
+      <th>country</th>
+      <th>join date</th>
       </tr>";
 
       while ($row = pg_fetch_assoc($result)) {
         $html .= "<tr>
         <td>$row[first_name]</td>
         <td>$row[last_name]</td>
-        <td>$row[email]</td>
-		    <td>$row[amount]</td>
+        <td>$row[u_email]</td>
+		    <td>$row[sum]</td>
         <td>$row[birth_country]</td>
+        <td>$row[since]</td>
         </tr>";
       }
 
@@ -60,12 +65,14 @@
   <?php
 
 	$db     = pg_connect("host=localhost port=5432 dbname=crowdfun user=postgres password=password");
+  /*
     $temp = pg_query($db, "SELECT u1.first_name, u1.last_name, f1.amount, u1.birth_country, u1.email
     						 FROM funds f1 INNER JOIN users u1 ON f1.u_email = u1.email WHERE u1.birth_country = '$_POST[birthcountry]' AND f1.amount = (select max(f1_max.amount) 
     						 					from funds f1_max 
     						 					where f1.u_email = f1_max.u_email) 
     						 ORDER BY f1.amount DESC");   // Query template
-
+  */
+  $temp = pg_query($db, "SELECT u.first_name, u.last_name, f.u_email, SUM(f.amount),u.birth_country, u.since FROM funds f INNER JOIN users u ON f.u_email = u.email WHERE u.birth_country = '$_POST[birthcountry]' GROUP BY f.u_email, u.first_name, u.last_name, u.since, u.birth_country ORDER BY SUM(f.amount) DESC");
 	if (isset($_POST['country'])) {
 	      $html = "";	
 	      $html = "<h1>Top Users table by specified country</h1><br>
@@ -75,16 +82,18 @@
 	      <th>last_name</th>
 	      <th>email</th>
 	      <th>amount contributed</th>
-        <th>birth_country</th>
+        <th>country</th>
+        <th>join date</th>
 	      </tr>";
 
 	      while ($row = pg_fetch_assoc($temp)) {
 	        $html .= "<tr>
 	        <td>$row[first_name]</td>
 	        <td>$row[last_name]</td>
-	        <td>$row[email]</td>
-    			<td>$row[amount]</td>
+	        <td>$row[u_email]</td>
+    			<td>$row[sum]</td>
           <td>$row[birth_country]</td>
+          <td>$row[since]</td>
 	        </tr>";
 	      }
 
