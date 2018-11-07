@@ -7,6 +7,7 @@ session_start();
   <title>Crowdfun Index Page</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
   <style>li {list-style: none;}</style>
 </head>
 <body>

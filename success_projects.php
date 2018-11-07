@@ -6,6 +6,7 @@ session_start();
 <head>
   <title>Successful Projects</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
   <style>li {list-style: none;}</style>
 </head>
 <body>
@@ -16,8 +17,8 @@ session_start();
     echo "<a href='log_out.php'>Logout</a>";
   } else {
     echo "<h5>You are not logged in.</h5>";
-    echo "<a href='/crowdfun/log_in.php'>Login<br></a>";
-    echo "<a href='create_user.php'>Sign Up</a>";
+    echo "<span class='buttons'><a href='/crowdfun/log_in.php'>Login</a></span>";
+    echo "<span class='buttons'><a href='create_user.php'>Sign Up</a></span>";
   }
   ?>
   <!--nav-->

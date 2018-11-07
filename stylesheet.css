@@ -1,0 +1,42 @@
+body {
+	/*background-color: #6AB1F7;*/
+	font-family: avenir;
+}
+
+h1 {
+	color: #653BA8;
+	text-decoration: underline;
+}
+
+h2 {
+	color: white;
+	background-color: #1D175C;
+	font-family: AppleGothic;
+	padding: 10px;
+	border: 1px solid black;
+	border-radius: 10px;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th, td {
+	border-bottom: 1px solid #16248C;
+}
+
+.buttons {
+	background-color: #2063BA;
+	border: 1px solid black;
+	border-radius: 5px;
+	text-transform: uppercase;
+	padding: 5px;
+	margin: 10px;
+}
+
+.buttons a:link {color: orange; background-color: #2063BA; text-decoration: none;}
+.buttons a:hover {color: orange; background-color: #2063BA; text-decoration: none;}
+.buttons a:active {color: orange; background-color: #2063BA; text-decoration: none;}
+.buttons a:visited {color: orange; background-color: #2063BA; text-decoration: none;}

@@ -2,6 +2,7 @@
 <head>
   <title>Crowdfun Admin Page</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
   <style>table, th, td {border: 1px solid black;}
           li {list-style: none;}</style>
 </head>
