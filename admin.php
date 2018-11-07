@@ -2,7 +2,8 @@
 <head>
   <title>Crowdfun Admin Page</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <style>li {list-style: none;}</style>
+  <style>table, th, td {border: 1px solid black;}
+          li {list-style: none;}</style>
 </head>
 <body>
   <h2>Crowdfun Admin</h2>
