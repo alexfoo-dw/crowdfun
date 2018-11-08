@@ -7,15 +7,24 @@
 </head>
 <body>
   <h2>Crowdfun Admin</h2>
+  <h3>User Insights</h3>
+    <ul>
+      <li><a href='admin.php'>Admin Home</a></li>
+      <li><a href='admin_edit.php'>Admin Edit</a></li>
+      <li><a href='admin_project_summary.php'>Project Insights</a></li>
+      <li><a href='admin_user_insights.php'>User Insights</a></li>
+      <li><a href='admin_top_users.php'>Top Contributing Users</a></li>
+  </ul>
     <ul>
     <form name="display" action="admin_user_insights.php" method="POST" >
       <li>View Metric:</li>
       <!-- list metrics here -->
       <!-- list users who funded all projects -->
-      <li><input type="submit" name="insight" value = "user_fund_all"/></li>
-      <li><input type="submit" name="insight" value = "user_not_funded_any"/></li>
-      <li><input type="submit" name="insight" value = "user_not_created_any"/></li>
-      <li><input type="submit" name="insight" value = "user_all"/></li>
+      <li><input type="submit" name="insight" value = "user_fund_all"/>Users who funded all projects</li>
+      <li><input type="submit" name="insight" value = "user_not_funded_any"/>Users who have yet to fund any projects</li>
+      <li><input type="submit" name="insight" value = "user_not_created_any"/>Users who have yet to create any project</li>
+      <li><input type="submit" name="insight" value = "user_all"/>Display all users</li>
+      <h5>Users who have funded this category</h5>
       <select name = "category">
         <option value="Art">Art</option>
         <option value="Audio">Audio</option>

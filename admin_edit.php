@@ -7,7 +7,15 @@
           li {list-style: none;}</style>
 </head>
 <body>
-  <h1>Edit Projects and Users</h1>
+  <h2>Crowdfun Admin</h2>
+  <h3>Edit Projects and Users</h3>
+    <ul>
+      <li><a href='admin.php'>Admin Home</a></li>
+      <li><a href='admin_edit.php'>Admin Edit</a></li>
+      <li><a href='admin_project_summary.php'>Project Insights</a></li>
+      <li><a href='admin_user_insights.php'>User Insights</a></li>
+      <li><a href='admin_top_users.php'>Top Contributing Users</a></li>
+  </ul>
   <h2>Create Users</h2>
   <ul>
     <form name="display" action="admin_edit.php" method="POST" >
